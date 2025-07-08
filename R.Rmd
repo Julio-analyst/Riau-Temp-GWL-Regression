@@ -1,0 +1,103 @@
+---
+title: "ADS CODE"
+author: "Farrel Julio Akbar"
+date: "2025-07-08"
+output: html_document
+---
+
+```{r}
+# 1. Import libraries
+library(ggplot2)
+library(readr)  # Lebih cepat dari read.csv
+
+# Baca file CSV
+data <- read_csv("C:/project/ads/Tugas Besar ADS_Kelompok 4_RB/data.csv")
+
+
+```
+
+
+```{r}
+# 2. Menampilkan Summary Deskriptif
+str(data)
+summary(data)
+
+```
+
+
+```{r}
+# 3. Scatter Plot
+plot(
+  data$`Suhu (celcius)`, data$`GWL (m)`,
+  main = "Scatter Plot Suhu vs GWL",
+  xlab = "Suhu (C)", ylab = "GWL (m)",
+  pch = 1, col = "blue"
+)
+
+
+```
+
+
+```{r}
+# 4. Membuat Model Regresi
+model_regresi <-lm(formula = data$"Suhu (celcius)" ~ data$"GWL (m)")
+model_regresi
+```
+
+
+```{r}
+# 5. Membuat Garis Regresi
+plot(data$`Suhu (celcius)` ~ data$`GWL (m)`,
+     col = "blue",
+     pch = 1,  # lingkaran bolong
+     main = "Scatter Plot: Suhu vs GWL",
+     xlab = "GWL (m)",
+     ylab = "Suhu (°C)")
+
+# Menambahkan garis regresi
+abline(lm(data$`Suhu (celcius)` ~ data$`GWL (m)`), col = "red", lwd = 2)
+
+
+```
+
+```{r}
+# 6. Summary Model Regresi
+summary(model_regresi)
+```
+
+
+```{r}
+# 7. Korelasi Pearson
+# Korelasi antara Suhu dan GWL
+cor(x = data$`Suhu (celcius)`, y = data$`GWL (m)`)
+
+```
+
+
+```{r}
+# 8. Koefisien Determinasi Manual
+# Membuat model regresi terlebih dahulu
+model_regresi <- lm(data$`Suhu (celcius)` ~ data$`GWL (m)`)
+
+# Menampilkan koefisien determinasi dari model
+summary(model_regresi)$r.squared
+
+```
+
+
+```{r}
+# 9.Install (jika belum)
+install.packages("lmtest", repos = "https://cloud.r-project.org")
+
+
+# Load package
+library(lmtest)
+
+# Baru jalankan uji Breusch-Pagan
+bptest(model_regresi)
+```
+
+
+```{r}
+```
+
