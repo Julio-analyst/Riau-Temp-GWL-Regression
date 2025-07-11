@@ -1,58 +1,66 @@
-# 📊 Simple Linear Regression Analysis of Temperature's Effect on Groundwater Level in Riau
+# 📊 Simple Linear Regression: Impact of Temperature on Groundwater Level in Riau
 
-## 🧠 Overview
-
-This project investigates the **influence of temperature on groundwater level (GWL)** in **Riau Province, Indonesia**, using **Simple Linear Regression** with **R programming**. It serves as a statistical analysis exercise and environmental study relevant to **data science** and **hydrological impact analysis**.
+> A statistical data science case study using R to explore environmental trends.
 
 ---
 
-## 🎯 Objective
+## 📌 Overview
 
-To determine whether temperature significantly impacts groundwater level fluctuations in Riau, using historical data and visual/statistical interpretation.
+This project investigates the relationship between **temperature** and **groundwater level (GWL)** in **Riau Province, Indonesia**, using **Simple Linear Regression** in R. It serves as a statistical case study and environmental analysis that intersects **climate science** and **data analytics**.
 
 ---
 
-## 🗂️ Project Structure
+## 🔗 Data Source
+
+- Climate and hydrological data from Riau Province (2019), sourced from open-access academic datasets
+- Variables: `Suhu` (temperature), `GWL` (groundwater level)
+
+---
+
+## 📊 Objective
+
+To evaluate whether variations in temperature significantly impact groundwater levels in Riau through regression modeling, correlation analysis, and hypothesis testing.
+
+---
+
+## 📁 Project Structure
 
 ```
-C:\analisis-gwl-riau
-├── data.csv                   # Dataset containing temperature and GWL values
-├── R.Rmd                     # R markdown file for reproducible analysis
-├── README.md                 # This documentation
+└️ analisis-gwl-riau/
+   ├─ data.csv               # Dataset with temperature and GWL
+   ├─ R.Rmd                 # R Markdown for reproducible analysis
+   └─ README.md             # Project documentation
 ```
 
 ---
 
-## 🧰 Tools and Libraries Used
+## 🛠️ Tools & Libraries
 
-* **R** / **RStudio** (IDE)
-* **ggplot2** – for data visualization
-* **lmtest** – for hypothesis testing (e.g., Breusch-Pagan test)
-* **stats** – for regression modeling and correlation
-
-> 
+- **R** & **RStudio**
+- `ggplot2` – Visualization
+- `lmtest` – Regression diagnostics (e.g., Breusch-Pagan Test)
+- `stats` – Linear regression model
 
 ---
 
-## 📈 Analysis Summary
+## 📈 Key Results
 
-> **"Simple Linear Regression Analysis of the Effect of Temperature on Groundwater Level (GWL) in Riau Province, Indonesia."**
-
-### 📌 Data Highlights:
-
-* Source: Secondary climate data of Riau Province (2019)
-* Variables: Temperature (Suhu) and Groundwater Level (GWL)
-
-### 🔍 Key Results:
-
-* **Pearson correlation coefficient**: r = 0.035 (very weak)
-* **Regression Equation**: `GWL = 29.45 + 1.11 * Suhu`
-* **R-squared**: Small value indicating low explanatory power
-* **Significance**: Model is statistically significant (p-value < 0.05)
+- **Pearson correlation coefficient**: **r = 0.035** → very weak correlation
+- **Regression model**: `GWL = 29.45 + 1.11 * Suhu`
+- **R-squared**: very low → temperature is not a strong explanatory variable
+- **p-value < 0.05** → model statistically significant despite weak fit
 
 ---
 
-## 📦 Key Code Steps (in R.Rmd)
+## 📊 Visual Output
+
+| Scatter Plot & Regression Line | Residual Diagnostic |
+|-------------------------------|----------------------|
+| ![regression_plot](images/regression_plot.png) | ![residual_plot](images/residual_plot.png) |
+
+---
+
+## 📝 Sample Code (R)
 
 ```r
 # Load libraries
@@ -62,22 +70,51 @@ library(lmtest)
 # Import data
 data <- read.csv("data.csv")
 
-# Build regression model
+# Regression model
 model <- lm(GWL ~ Suhu, data = data)
-abline(model, col = "red")
 summary(model)
 
-# Pearson correlation
+# Correlation
 cor(data$Suhu, data$GWL)
 
-# R-squared value
+# Plot
+ggplot(data, aes(x = Suhu, y = GWL)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red")
+
+# R-squared
 summary(model)$r.squared
 ```
 
 ---
 
-## 🧠 Credits
+## 👨‍💼 Skills Demonstrated
 
-Created by **Farrel Julio Akbar** and team
-📍 Case Study: **Riau, Indonesia**
-📘 Based on coursework: *Advanced Data Science (ADS)*
+- Statistical Modeling (Simple Linear Regression)
+- Correlation Analysis & R-squared Interpretation
+- Exploratory Data Analysis (EDA)
+- Residual Diagnostics (Breusch-Pagan)
+- Reproducible Research using R Markdown
+
+---
+
+## 📚 References & Docs
+
+- [R stats::lm() Documentation](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html)
+- [ggplot2 Guide](https://ggplot2.tidyverse.org/)
+- [lmtest Package on CRAN](https://cran.r-project.org/web/packages/lmtest/index.html)
+
+---
+
+## 📝 License
+
+MIT License  
+© 2025 Julio-analyst
+
+---
+
+## 📬 Contact
+
+- 🌐 [LinkedIn](https://www.linkedin.com/in/farrel-julio-427143288)  
+- 📂 [Portfolio (Notion)](https://linktr.ee/Julio-analyst)  
+- ✉️ farelrel12345@gmail.com
